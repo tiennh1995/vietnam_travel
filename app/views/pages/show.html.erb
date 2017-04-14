@@ -12,6 +12,10 @@
     <li>
         <a href="#portfolio" onclick=$("#menu-close").click();>いいところ</a>
     </li>
+    <li>
+    <% if user_signed_in? %>
+    <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+    <li>
   </ul>
 </nav>
 

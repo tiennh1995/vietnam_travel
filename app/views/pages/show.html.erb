@@ -21,9 +21,10 @@
     <h1>ベトナム旅行</h1>
     <!--<h3>A Look at Vietnam</h3>-->
     <br>
-
-    <a href="#" class="btn btn-lg btn-light">サインアップ</a>
-    <a href="#" class="btn btn-lg btn-dark">サインイン</a>
+    <%= link_to "サインアップ", new_user_registration_path,
+      class: "btn btn-lg btn-light" %>
+    <%= link_to "サインイン", new_user_session_path,
+      class: "btn btn-lg btn-dark" %>
   </div>
 </header>
 
@@ -62,28 +63,28 @@
           <div class="col-md-6">
             <div class="portfolio-item">
               <a href="#">
-                <img class="img-portfolio img-responsive" src="assets/portfolio-1.jpg">
+                <img class="img-portfolio img-responsive" src="../assets/portfolio-1.jpg">
               </a>
             </div>
           </div>
           <div class="col-md-6">
             <div class="portfolio-item">
               <a href="#">
-                <img class="img-portfolio img-responsive" src="assets/portfolio-2.jpg">
+                <img class="img-portfolio img-responsive" src="../assets/portfolio-2.jpg">
               </a>
             </div>
           </div>
           <div class="col-md-6">
             <div class="portfolio-item">
               <a href="#">
-                <img class="img-portfolio img-responsive" src="assets/portfolio-3.jpg">
+                <img class="img-portfolio img-responsive" src="../assets/portfolio-3.jpg">
               </a>
             </div>
           </div>
           <div class="col-md-6">
             <div class="portfolio-item">
               <a href="#">
-                <img class="img-portfolio img-responsive" src="assets/portfolio-4.jpg">
+                <img class="img-portfolio img-responsive" src="../assets/portfolio-4.jpg">
               </a>
             </div>
           </div>

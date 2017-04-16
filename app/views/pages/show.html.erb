@@ -13,9 +13,10 @@
         <a href="#portfolio" onclick=$("#menu-close").click();>いいところ</a>
     </li>
     <li>
-    <% if user_signed_in? %>
-    <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-    <li>
+       <% if user_signed_in? %>
+       <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+       <% end %>
+    </li>
   </ul>
 </nav>
 
@@ -25,10 +26,14 @@
     <h1>ベトナム旅行</h1>
     <!--<h3>A Look at Vietnam</h3>-->
     <br>
-    <%= link_to "サインアップ", new_user_registration_path,
+      <% if user_signed_in? %>
+      <h1>ベトナム旅行へようこそ</h1>
+      <% else %>
+      <%= link_to "サインアップ", new_user_registration_path,
       class: "btn btn-lg btn-light" %>
-    <%= link_to "サインイン", new_user_session_path,
+       <%= link_to "サインイン", new_user_session_path,
       class: "btn btn-lg btn-dark" %>
+      <% end %>
   </div>
 </header>
 

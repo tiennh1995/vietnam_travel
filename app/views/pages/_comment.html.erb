@@ -14,18 +14,10 @@
           Vi du ve description
         </span>
         <div>
-          <span>
-            <%= link_to "ライク", "#" %>
-          </span>
-
-          <span>
-            <%= link_to "返信", "#" %>
-          </span>
-
-          <span>
-            -
-          </span>
-
+          <span class="like-comments"><%= link_to "ライク", "#" %></span>
+          <span>-</span>
+          <span class="reply-comments"><%= link_to "返信", "#" %></span>
+          <span>-</span>
           <span>
             <%#= time_ago_in_words comment.created_at %>
             <%= time_ago_in_words Time.now %>

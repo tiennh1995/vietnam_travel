@@ -21,4 +21,18 @@ class User < ApplicationRecord
   validates_confirmation_of :password, if: :password_required?
   validates_length_of :password, within: Devise.password_length,
     allow_blank: true
+
+  enum sex: [:male, :female]
+
+  def just_followed
+    following.order(created_at: :desc).limit 10
+  end
+
+  def news_feed
+    Image.all
+  end
+
+  def liked image
+    true
+  end
 end

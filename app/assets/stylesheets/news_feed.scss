@@ -28,6 +28,11 @@
       height: 35px;
       border-radius: 100%;
     }
+
+    .dropdown-menu {
+      right: 0px !important;
+      left: inherit;
+    }
   }
 
   span {

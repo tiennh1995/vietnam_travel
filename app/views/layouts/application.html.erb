@@ -28,6 +28,16 @@
     <% end %>
 
     <div class="nht-body">
+      <div class="flash">
+        <% flash.each do |message_type, message| %>
+          <% if message_type == "notice" || message_type == "success" %>
+            <% message_type = "info" %>
+          <% elsif message_type == "alert" %>
+            <% message_type = "danger" %>
+          <% end %>
+          <div class="alert alert-<%= message_type %>"><%= message %></div>
+        <% end %>
+      </div>
       <%= yield %>
     </div>
   </body>

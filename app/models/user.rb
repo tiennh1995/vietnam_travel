@@ -25,7 +25,7 @@ class User < ApplicationRecord
   enum sex: [:male, :female]
 
   def just_followed
-    following.order(created_at: :desc).limit 10
+    following.order(created_at: :desc).limit 5
   end
 
   def news_feed

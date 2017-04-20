@@ -1,3 +1,5 @@
 length_name: 15
 length_names: 30
 length_address: 20
+load_more_user_size: 5
+load_more_image_size: 5

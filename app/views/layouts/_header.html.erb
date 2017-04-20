@@ -1,8 +1,19 @@
 <nav class="nht-header">
   <span class="header-left">
-    <li class="image-responsive">
+    <li class="header-title">
       <%= link_to root_path do %>
-        <%= image_tag "logo.png", class: "image-responsive logo-header" %>
+        <%#= image_tag "logo.png", class: "image-responsive logo-header" %>
+        ベトナム観光地
+      <% end %>
+    </li>
+    <li class="header-search">
+      <%= form_tag root_path, method: :get do %>
+        <span>
+          <%= text_field_tag :search, params[:search],
+            placeholder: "写真のアドレスを入力してください", class: "form-control
+            images-search" %>
+          <i class="fa fa-search" aria-hidden="true"></i>
+        </span>
       <% end %>
     </li>
     <div class="clearfix"></div>
@@ -17,7 +28,9 @@
       <a href="#" class="dropdown-toggle" data-toggle="dropdown"
         title="<%= current_user.full_name %>">
         <%= image_tag avatar_profile(current_user), class: "avatar-header" %>
-        <%= truncate current_user.full_name, length: Settings.length_name %>
+        <span class="header-user-name">
+          <%= truncate current_user.full_name, length: Settings.length_name %>
+        </span>
         <b class="caret"></b>
       </a>
       <ul class="dropdown-menu">

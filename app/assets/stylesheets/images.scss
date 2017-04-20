@@ -17,6 +17,7 @@
 
   .images-header {
     margin-bottom: 10px;
+    position: relative;
 
     .images-header-content {
       .images-header-avatar {
@@ -30,7 +31,6 @@
 
       .images-header-info {
         overflow: hidden;
-        position: relative;
 
         h6 {
           margin-bottom: 0px !important;

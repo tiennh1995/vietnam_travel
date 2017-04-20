@@ -1,19 +1,19 @@
 <ul>
-  <% unless @followings.empty? %>
-    <% @followings.each do |following| %>
+  <% unless @know_users.empty? %>
+    <% @know_users.each do |user| %>
       <%= link_to "#" do %>
         <li title="<%= current_user.full_name %>" class="followed-users">
           <span>
-            <%= image_tag avatar_profile(following),
+            <%= image_tag avatar_profile(user),
               class: "avatar-news-feed-left" %>
           </span>
           <span>
-            <%= truncate following.full_name, length: Settings.length_names %>
+            <%= truncate user.full_name, length: Settings.length_names %>
           </span>
         </li>
       <% end %>
     <% end %>
-    <% if @followings.size >= Settings.load_more_user_size  %>
+    <% if @know_users.size >= Settings.load_more_user_size  %>
       <div class="users-load-more">
         <%= link_to "もっと見る", "#" %>
       </div>

@@ -1,4 +1,4 @@
-<ul>
+<ul class="popular-images">
   <% unless @popular_images.empty? %>
     <li>
       <% @popular_images.each_with_index do |popular_image, index| %>
@@ -27,6 +27,12 @@
           </div>
         </div>
       <% end %>
+    <% if @popular_images.size >= Settings.load_more_image_size  %>
+      <div class="images-load-more">
+        <hr>
+        <%= link_to "もっと見る", "#" %>
+      </div>
+    <% end %>
     </li>
   <% else %>
     <p>

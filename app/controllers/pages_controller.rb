@@ -9,6 +9,7 @@ class PagesController < ApplicationController
     if user_signed_in?
       #@followings = current_user.just_followed
       @followings = User.all
+      @know_users = User.all
       @popular_images = Image.popular_images
     else
     end

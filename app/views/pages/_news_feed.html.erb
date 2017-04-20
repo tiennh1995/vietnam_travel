@@ -1,20 +1,52 @@
 <div class="nht-news-feed">
   <div class="col-md-2 nht-news-feed-left">
-    <h3>フォローした人</h3>
-    <hr>
-    <div class="news-feed-left-content">
-      <%= render "followed_users" %>
+    <div class="above-left">
+      <h4 style="padding: 10px">
+        <i class="fa fa-users" aria-hidden="true" style="float: left; color: blue"></i>
+        フォローした人
+      </h4>
+      <hr>
+      <div class="news-feed-left-content">
+        <%= render "followed_users" %>
+      </div>
+    </div>
+
+    <div class="below-left">
+      <h4>
+        <i class="fa fa-users" aria-hidden="true" style="float: left"></i>
+        知り合い人？
+      </h4>
+      <hr>
+      <div class="news-feed-left-content">
+        <%= render "know_users" %>
+      </div>
     </div>
   </div>
 
   <div class="col-md-6 col-sm-6 col-xs-6 nht-news-feed-middle">
     <div class="news-feed-middle-content">
+      <div class="news-feed-upload-images">
+        <span class="avatar-upload-images">
+          <%= image_tag avatar_profile(current_user), class: "img-responsive
+            avatar-upload" %>
+        </span>
+        <div class="upload-images-content" data-toggle="modal"
+          data-target="#images-upload-modal">
+          <%= form_tag "#" do %>
+            <%= text_area_tag :search, params[:search],
+              placeholder: "何かを書いて", class: "form-control" %>
+          <% end %>
+        </div>
+      </div>
       <%= render "image" %>
     </div>
   </div>
 
   <div class="col-md-3 col-sm-3 col-xs-3 nht-news-feed-right">
-    <h3>人気がある写真</h3>
+    <h4>
+      <i class="fa fa-star" aria-hidden="true"></i>
+      人気がある写真
+    </h4>
     <hr>
     <div class="news-feed-right-content">
       <%= render "popular_images" %>
@@ -24,4 +56,23 @@
     <i class="fa fa-chevron-up fa-fw fa-1x"></i>
   </a>
   <div class="clearfix"></div>
+
+  <div id="images-upload-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog images-upload-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            &times;
+          </button>
+          <h4 class="modal-title">Vi du ve dia diem</h4>
+        </div>
+        <div class="modal-body">
+          <%#= image_tag image.image.url, class: "img-responsive
+            images-show-detail" %>
+          <%= image_tag "portfolio-1.jpg", class: "img-responsive
+            images-show-detail" %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

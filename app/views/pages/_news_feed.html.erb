@@ -38,7 +38,9 @@
           <% end %>
         </div>
       </div>
-      <%= render "image" %>
+      <% @images.each do |image| %>
+        <%= render "image", image: image %>
+      <% end %>
     </div>
   </div>
 
@@ -67,10 +69,6 @@
           <h4 class="modal-title">Vi du ve dia diem</h4>
         </div>
         <div class="modal-body">
-          <%#= image_tag image.image.url, class: "img-responsive
-            images-show-detail" %>
-          <%= image_tag "portfolio-1.jpg", class: "img-responsive
-            images-show-detail" %>
         </div>
       </div>
     </div>

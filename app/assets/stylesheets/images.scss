@@ -8,6 +8,7 @@
     min-width: 60%;
     max-height: 80vh;
     max-width: 90%;
+    margin-top: 50px;
 
     .images-show-detail {
       height: 100%;
@@ -57,11 +58,17 @@
           }
 
           .dropdown-menu {
-            min-width: 70px;
+            min-width: 120px;
+
+            a:hover {
+              cursor: auto;
+              text-decoration: none !important;
+            }
 
             li {
               border-bottom: 1px solid rgba(8, 8, 8, 0.1);
               padding: 7px;
+              color: black;
             }
           }
 
@@ -88,6 +95,14 @@
   .images-footer {
     .images-like {
       cursor: pointer;
+
+      .like {
+        color: black;
+      }
+
+      .unlike {
+        color: blue;
+      }
 
       .images-like-icon {
         height: 23px;

@@ -27,12 +27,10 @@
           </div>
         </div>
       <% end %>
-    <% if @popular_images.size >= Settings.load_more_image_size  %>
       <div class="images-load-more">
         <hr>
-        <%= link_to "もっと見る", "#" %>
+        <%= link_to "もっと見る", popular_images_path %>
       </div>
-    <% end %>
     </li>
   <% else %>
     <p>

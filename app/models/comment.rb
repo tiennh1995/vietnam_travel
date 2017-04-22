@@ -7,7 +7,8 @@ class Comment < ApplicationRecord
   validates :content, presence: true
 
   def reply_comments
-    Comment.where(parent_id: self.id).where.not id: self.id
+    Comment.where(parent_id: self.id).where.not(id: self.id)
+      .order id: :asc
   end
 
   def reply_comment

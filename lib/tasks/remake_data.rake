@@ -11,5 +11,9 @@ namespace :db do
     Rake::Task["db:images"].invoke
     puts "**********Create Comment*********"
     Rake::Task["db:comments"].invoke
+    puts "**********Create Like*********"
+    Rake::Task["db:likes"].invoke
+    puts "**********Create Relationship*********"
+    Rake::Task["db:relationships"].invoke
   end
 end

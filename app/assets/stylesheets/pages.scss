@@ -7,6 +7,18 @@ body {
 }
 
 .nht-body {
+  .complete {
+    display:none;
+  }
+
+  .load-more {
+    background: lightblue;
+    color: navy;
+    font-size: 13px;
+    padding: 3px;
+    cursor: pointer;
+  }
+
   .home-page {
 
     .header {

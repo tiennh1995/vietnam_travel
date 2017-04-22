@@ -1,5 +1,5 @@
 .comments {
-  padding-top: 10px;
+  margin-bottom: 10px;
 
   .comments-header {
     margin-bottom: 10px;
@@ -14,13 +14,18 @@
         border: 1px solid rgba(0, 0, 0, .1);
       }
 
+      .avatar-reply-comment {
+        height: 30px;
+        width: 30px;
+      }
+
       .comments-header-info {
         overflow: hidden;
         position: relative;
 
         h6 {
           margin-bottom: 0px !important;
-          margin-top: 5px !important;
+          margin-top: 0px !important;
           font-weight: bold;
           font-size: 14px;
           color: #365899;
@@ -29,7 +34,16 @@
         .comments-header-user {
           width: 100%;
         }
+
+        .comment-info-action {
+          margin-bottom: 10px;
+        }
       }
     }
   }
+}
+
+.repply-comments {
+  border-left: 2px solid #dddfe2;
+  padding-left: 10px;
 }

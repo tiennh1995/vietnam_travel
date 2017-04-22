@@ -1,0 +1,52 @@
+.middle-follow-users {
+  padding: 10px !important;
+  z-index: 2;
+  background-color: white !important;
+
+  .follow-users {
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+
+    .follow-users-header {
+      margin-bottom: 10px;
+
+      .follow-users-header-content {
+        .follow-users-header-avatar {
+          height: 60px;
+          width: 60px;
+          margin-right: 5px;
+          float: left;
+          display: block;
+          border: 1px solid rgba(0, 0, 0, .1);
+        }
+
+        .follow-users-header-info {
+          overflow: hidden;
+          position: relative;
+
+          .follow-users-btn {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+          }
+
+          h6 {
+            margin-bottom: 0px !important;
+            margin-top: 0px !important;
+            font-weight: bold;
+            font-size: 14px;
+            color: #365899;
+          }
+
+          .follow-users-header-user {
+            width: 100%;
+          }
+
+          .comment-info-action {
+            margin-bottom: 10px;
+          }
+        }
+      }
+    }
+  }
+}

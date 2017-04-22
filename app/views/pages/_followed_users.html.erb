@@ -1,17 +1,7 @@
 <ul>
   <% unless @followings.empty? %>
     <% @followings.each do |following| %>
-      <%= link_to "#" do %>
-        <li title="<%= current_user.full_name %>" class="followed-users">
-          <span>
-            <%= image_tag avatar_profile(following),
-              class: "avatar-news-feed-left" %>
-          </span>
-          <span>
-            <%= truncate following.full_name, length: Settings.length_names %>
-          </span>
-        </li>
-      <% end %>
+      <%= render "user", user: following %>
     <% end %>
     <% if @followings.size >= Settings.load_more_user_size  %>
       <div class="users-load-more">

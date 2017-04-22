@@ -5,4 +5,12 @@ class Comment < ApplicationRecord
   validates :user, presence: true
   validates :image, presence: true
   validates :content, presence: true
+
+  def reply_comments
+    Comment.where(parent_id: self.id).where.not id: self.id
+  end
+
+  def reply_comment
+    Comment.find_by id: self.reply_id
+  end
 end

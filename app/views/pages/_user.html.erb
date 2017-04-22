@@ -1,0 +1,13 @@
+<ul>
+  <%= link_to "#" do %>
+    <li title="<%= current_user.full_name %>" class="followed-users">
+      <span>
+        <%= image_tag avatar_profile(user),
+          class: "avatar-news-feed-left" %>
+      </span>
+      <span>
+        <%= truncate user.full_name, length: Settings.length_names %>
+      </span>
+    </li>
+  <% end %>
+</ul>

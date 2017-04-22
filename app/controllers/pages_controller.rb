@@ -11,6 +11,7 @@ class PagesController < ApplicationController
       @followings = User.all
       @know_users = User.all
       @popular_images = Image.popular_images
+      @images = current_user.images_news_feed
     else
     end
   end

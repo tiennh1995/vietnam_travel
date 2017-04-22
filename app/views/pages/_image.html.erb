@@ -10,26 +10,45 @@
 
       <div class="images-header-info">
         <h6><%= link_to current_user.full_name, "#" %></h6>
-        <!-- <small><%#= time_ago_in_words image.created_at %></small> -->
-        <small><%= l Time.zone.now.to_datetime, format: :default %></small>
+        <small><%= time_ago_in_words image.created_at %></small>
 
         <span class="dropdown header-item images-header-icon">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <%= image_tag "arrow.png", class: "icon" %>
           </a>
           <ul class="dropdown-menu">
-            <li>
-              <span>
-                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-              </span>
-              <span><%= link_to "編集", "#" %></span>
-            </li>
-            <li>
-              <span>
-                <i class="fa fa-times" aria-hidden="true"></i>
-              </span>
-              <span><%= link_to "解消", "#" %></span>
-            </li>
+            <%= link_to "#" do %>
+              <li>
+                <span>
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </span>
+                <span>編集</span>
+              </li>
+            <% end %>
+            <%= link_to "#" do %>
+              <li>
+                <span>
+                  <i class="fa fa-times" aria-hidden="true"></i>
+                </span>
+                <span>削除</span>
+              </li>
+            <% end %>
+            <%= link_to "#" do %>
+              <li>
+                <span>
+                  <i class="fa fa-bookmark-o" aria-hidden="true"></i>
+                </span>
+                <span>ブックマック</span>
+              </li>
+            <% end %>
+            <%= link_to "#" do %>
+              <li>
+                <span>
+                  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                </span>
+                <span>レポート</span>
+              </li>
+            <% end %>
           </ul>
         </span>
       </div>
@@ -38,26 +57,24 @@
 
   <div class="images-body">
     <div class="images-body-description">
-      <%#= image.description %>
-      Vi du ve description
+      <%= image.description %>
     </div>
     <div class="images-body-image" data-toggle="modal"
-      data-target="#images-modal">
-      <%#= image_tag image.image.url, class: "img-responsive images-show" %>
-      <%= image_tag "portfolio-1.jpg", class: "img-responsive images-show" %>
+      data-target="#images-modal-<%= image.id %>">
+      <%= image_tag image.image.url, class: "img-responsive images-show" %>
     </div>
     <hr>
   </div>
 
   <div class="images-footer">
     <span class="images-like">
-      <%# if current_user.liked image %>
-        <%#= image_tag "unlike.png", class: "images-like-icon" %>
-      <%# else %>
-        <%#= image_tag "like.png", class: "images-like-icon" %>
-      <%# end %>
-      <%= image_tag "unlike.png", class: "images-like-icon" %>
-      <span>ライク</span>
+      <% if current_user.liked image %>
+        <%= image_tag "unlike.png", class: "images-like-icon" %>
+        <span class="unlike">ライク</span>
+      <% else %>
+        <%= image_tag "like.png", class: "images-like-icon" %>
+        <span class="like">ライク</span>
+      <% end %>
     </span>
 
     <span class="images-comment">
@@ -68,25 +85,9 @@
   </div>
 
   <div class="images-comment">
-    <%= render "comment" %>
+    <% image.main_comments.each do |comment| %>
+      <%= render "comment", comment: comment %>
+    <% end %>
   </div>
-
-  <div id="images-modal" class="modal fade" role="dialog">
-    <div class="modal-dialog images-modal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">
-            &times;
-          </button>
-          <h4 class="modal-title">Vi du ve dia diem</h4>
-        </div>
-        <div class="modal-body">
-          <%#= image_tag image.image.url, class: "img-responsive
-            images-show-detail" %>
-          <%= image_tag "portfolio-1.jpg", class: "img-responsive
-            images-show-detail" %>
-        </div>
-      </div>
-    </div>
-  </div>
+  <%= render "image_modal", image: image %>
 </div>

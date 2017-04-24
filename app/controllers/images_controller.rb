@@ -1,5 +1,6 @@
 class ImagesController < ApplicationController
   def index
+  	@image = Image.new
     @images = current_user.images_news_feed
     unless @images.empty?
       image_offset = params[:image_offset] || @images.first.id
@@ -8,4 +9,5 @@ class ImagesController < ApplicationController
       @last = (@images.size < Settings.load_more_image_size) ? true : false
     end
   end
+
 end

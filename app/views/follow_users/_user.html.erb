@@ -1,0 +1,24 @@
+<div class="follow-users">
+  <div class="follow-users-header">
+    <span class="follow-users-header-content">
+      <span class="follow-users-image">
+        <%= link_to "#" do %>
+          <%= image_tag avatar_profile(user), class: "img-responsive
+            follow-users-header-avatar" %>
+        <% end %>
+      </span>
+
+      <div class="follow-users-header-info">
+        <h6><%= link_to user.full_name, "#" %></h6>
+        <div><b>いーメル: </b><%= user.email %></div>
+        <div><b>性: </b><%= user.sex %></div>
+        <div><b>写真数: </b><%= user.images.size %></div>
+        <div><b>フォローされる人数: </b><%= user.profile.followed_number %></div>
+
+        <div class="follow-users-btn">
+          <%= link_to "アンフォロー", "#", class: "btn btn-primary" %>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>

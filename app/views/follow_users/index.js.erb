@@ -1,0 +1,11 @@
+<% @users.each do |user| %>
+  $('.follow-users-content').append('<%= j render "user", user: user %>');
+<% end %>
+<% if @last %>
+  $('#load-more-follow-users').hide();
+<% else %>
+  $('#load-more-follow-users')
+    .html('<%= link_to "もっと見る", follow_users_path(type: @type,
+    follow_users_offset: @users.last.id - 1), remote: true %>');
+<% end %>
+

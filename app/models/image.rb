@@ -9,9 +9,9 @@ class Image < ApplicationRecord
 
   mount_uploader :image, ImageUploader
 
-  scope :popular_images, -> {order(like_number: :desc).limit 5}
+  scope :popular_images, -> {order like_number: :desc, id: :asc}
 
   def main_comments
-    comments.where parent_id: nil
+    comments.where(parent_id: nil).order id: :asc
   end
 end

@@ -57,7 +57,21 @@
 
   <div class="images-body">
     <div class="images-body-description">
-      <%= image.description %>
+      <% if image.description.length > Settings.length_description %>
+        <span><%= image.description[0...Settings.length_description] %></span>
+        <span class="complete">
+          <%= image.description[
+            Settings.length_description..image.description.length] %>
+        </span>
+        <span class="load-more">もっと見る..</span>
+      <% else %>
+        <%= image.description %>
+      <% end %>
+    </div>
+
+    <div class="images-body-address">
+      <span><b>アドレス: </b></span>
+      <%= link_to image.address, "#"%>
     </div>
     <div class="images-body-image" data-toggle="modal"
       data-target="#images-modal-<%= image.id %>">
@@ -77,17 +91,25 @@
       <% end %>
     </span>
 
-    <span class="images-comment">
+    <span class="images-comments">
       <%= image_tag "comment.png", class: "images-comment-icon" %>
       コメント
     </span>
     <hr>
   </div>
 
-  <div class="images-comment">
-    <% image.main_comments.each do |comment| %>
-      <%= render "comment", comment: comment %>
+  <div class="images-comments" id="images-comments-<%= image.id %>">
+    <% image_comments = image.main_comments.offset(0)
+      .limit Settings.load_more_comment_size %>
+    <% image_comments.each do |comment| %>
+      <%= render "comments/comment", comment: comment %>
     <% end %>
   </div>
-  <%= render "image_modal", image: image %>
+  <div id="load-more-image-comments-<%= image.id %>">
+    <% unless image_comments.empty? %>
+      <%= link_to "コメントをもっと見る", image_comments_path(image,
+        comment_offset: image_comments.last.id), remote: true %>
+    <% end %>
+  </div>
+  <%= render "images/image_modal", image: image %>
 </div>

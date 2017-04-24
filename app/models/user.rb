@@ -25,13 +25,19 @@ class User < ApplicationRecord
   enum sex: [:male, :female]
 
   def just_followed
-    following.order(created_at: :desc).limit 5
+    following.order id: :desc
+  end
+
+  def know_users
+    user_ids = following.ids
+    user_ids.push self.id
+    User.all.where.not(id: user_ids).order id: :desc
   end
 
   def images_news_feed
     user_ids = following.ids
     user_ids.push self.id
-    Image.where user_id: user_ids
+    Image.where(user_id: user_ids).order id: :desc
   end
 
   def liked image

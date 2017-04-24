@@ -25,6 +25,12 @@ document.addEventListener('turbolinks:load', function() {
     }
   });
 
+  $(document).on('click', '#to-top', function() {
+    $('html, body').animate({
+      scrollTop: 0
+    }, 1000);
+  })
+
   setTimeout(function(){
     $('.flash').slideUp(1000);
   }, 1500);

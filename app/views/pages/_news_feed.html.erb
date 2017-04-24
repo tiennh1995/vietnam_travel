@@ -1,24 +1,26 @@
-<div class="nht-news-feed">
-  <div class="left-news-feed">
-    <%= render "left_news_feed" %>
-  </div>
-  <div class="middle-news-feed">
-    <%= render "middle_news_feed", images: @images %>
-  </div>
-  <div class="right-news-feed">
-    <%= render "right_news_feed" %>
-  </div>
+<div class="nht-body-content">
+  <div class="nht-news-feed">
+    <div class="left-news-feed">
+      <%= render "left_news_feed" %>
+    </div>
+    <div class="middle-news-feed">
+      <%= render "middle_news_feed", images: @images %>
+    </div>
+    <div class="right-news-feed">
+      <%= render "right_news_feed" %>
+    </div>
 
-  <div id="images-upload-modal" class="modal fade" role="dialog">
-    <div class="modal-dialog images-upload-modal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">
-            &times;
-          </button>
-          <h4 class="modal-title">Vi du ve dia diem</h4>
-        </div>
-        <div class="modal-body">
+    <div id="images-upload-modal" class="modal fade" role="dialog">
+      <div class="modal-dialog images-upload-modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+            <h4 class="modal-title">Vi du ve dia diem</h4>
+          </div>
+          <div class="modal-body">
+          </div>
         </div>
       </div>
     </div>

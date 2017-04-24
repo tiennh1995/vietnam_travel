@@ -6,6 +6,21 @@ body {
   overflow-y: auto;
 }
 
+.nht-body-content {
+  padding: 20px !important;
+  padding-top: 50px !important;
+  background-color: #e9ebee;
+  min-width: 1000px;
+  min-height: 100vh;
+}
+
+.nht-body-content:before,
+.nht-body-content:after {
+  content: " ";
+  display: table;
+  clear: both;
+}
+
 .nht-body {
   .complete {
     display:none;

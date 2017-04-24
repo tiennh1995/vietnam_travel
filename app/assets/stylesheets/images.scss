@@ -16,6 +16,12 @@
     }
   }
 
+  hr {
+    margin: 0px !important;
+    margin-top: 5px !important;
+    margin-bottom: 5px !important
+  }
+
   .images-header {
     margin-bottom: 10px;
     position: relative;
@@ -51,10 +57,12 @@
           position: absolute;
           top: 0px;
           right: 0px;
+          min-width: 115px;
 
           .icon {
             height: 20px;
             width: 20px;
+            float: right;
           }
 
           .dropdown-menu {

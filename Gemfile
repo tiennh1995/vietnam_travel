@@ -5,6 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+
 gem "bootstrap-sass", "3.2.0.0"
 gem "font-awesome-rails"
 gem "rails", "~> 5.0.1"
@@ -21,6 +22,7 @@ gem "faker"
 gem "config"
 gem "carrierwave", "~> 1.0"
 gem "mini_magick", "3.8.0"
+gem "bootstrap-datepicker-rails"
 
 group :development, :test do
   gem "byebug", platform: :mri

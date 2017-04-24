@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   layout :layout_by_resource
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :authenticate_user!
 
   def load_data_static
     if user_signed_in?

@@ -1,7 +1,7 @@
 module ApplicationHelper
   def avatar_profile user
-    if user && user.avatar
-      user.avatar.url
+    if user && user.avatar_url
+      user.avatar_url
     else
       "#{user.sex}.png"
     end

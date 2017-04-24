@@ -1,0 +1,115 @@
+<div class="images">
+  <div class="images-header">
+    <span class="images-header-content">
+      <span class="images-image">
+        <%= link_to "#" do %>
+          <%= image_tag avatar_profile(current_user), class: "img-responsive
+            images-header-avatar" %>
+        <% end %>
+      </span>
+
+      <div class="images-header-info">
+        <h6><%= link_to current_user.full_name, "#" %></h6>
+        <small><%= time_ago_in_words image.created_at %></small>
+
+        <span class="dropdown header-item images-header-icon">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <%= image_tag "arrow.png", class: "icon" %>
+          </a>
+          <ul class="dropdown-menu">
+            <%= link_to "#" do %>
+              <li>
+                <span>
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </span>
+                <span>編集</span>
+              </li>
+            <% end %>
+            <%= link_to "#" do %>
+              <li>
+                <span>
+                  <i class="fa fa-times" aria-hidden="true"></i>
+                </span>
+                <span>削除</span>
+              </li>
+            <% end %>
+            <%= link_to "#" do %>
+              <li>
+                <span>
+                  <i class="fa fa-bookmark-o" aria-hidden="true"></i>
+                </span>
+                <span>ブックマック</span>
+              </li>
+            <% end %>
+            <%= link_to "#" do %>
+              <li>
+                <span>
+                  <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                </span>
+                <span>レポート</span>
+              </li>
+            <% end %>
+          </ul>
+        </span>
+      </div>
+    </span>
+  </div>
+
+  <div class="images-body">
+    <div class="images-body-description">
+      <% if image.description.length > Settings.length_description %>
+        <span><%= image.description[0...Settings.length_description] %></span>
+        <span class="complete">
+          <%= image.description[
+            Settings.length_description..image.description.length] %>
+        </span>
+        <span class="load-more">もっと見る..</span>
+      <% else %>
+        <%= image.description %>
+      <% end %>
+    </div>
+
+    <div class="images-body-address">
+      <span><b>アドレス: </b></span>
+      <%= link_to image.address, "#"%>
+    </div>
+    <div class="images-body-image" data-toggle="modal"
+      data-target="#images-modal-<%= image.id %>">
+      <%= image_tag image.image.url, class: "img-responsive images-show" %>
+    </div>
+    <hr>
+  </div>
+
+  <div class="images-footer">
+    <span class="images-like">
+      <% if current_user.liked image %>
+        <%= image_tag "unlike.png", class: "images-like-icon" %>
+        <span class="unlike">ライク</span>
+      <% else %>
+        <%= image_tag "like.png", class: "images-like-icon" %>
+        <span class="like">ライク</span>
+      <% end %>
+    </span>
+
+    <span class="images-comments">
+      <%= image_tag "comment.png", class: "images-comment-icon" %>
+      コメント
+    </span>
+    <hr>
+  </div>
+
+  <div class="images-comments" id="images-comments-<%= image.id %>">
+    <% image_comments = image.main_comments.offset(0)
+      .limit Settings.load_more_comment_size %>
+    <% image_comments.each do |comment| %>
+      <%= render "comments/comment", comment: comment %>
+    <% end %>
+  </div>
+  <div id="load-more-image-comments-<%= image.id %>">
+    <% unless image_comments.empty? %>
+      <%= link_to "コメントをもっと見る", image_comments_path(image,
+        comment_offset: image_comments.last.id), remote: true %>
+    <% end %>
+  </div>
+  <%= render "images/image_modal", image: image %>
+</div>

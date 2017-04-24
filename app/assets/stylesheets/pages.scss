@@ -1,3 +1,38 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome";
+
+body {
+  overflow-y: auto;
+}
+
+.nht-body {
+  .complete {
+    display:none;
+  }
+
+  .load-more {
+    background: lightblue;
+    color: navy;
+    font-size: 13px;
+    padding: 3px;
+    cursor: pointer;
+  }
+
+  .home-page {
+
+    .header {
+      height: 100vh;
+    }
+  }
+
+  .flash {
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    width: auto;
+    word-wrap: break-word;
+    text-align: right;
+    z-index: 1;
+  }
+}

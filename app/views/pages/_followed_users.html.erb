@@ -1,0 +1,14 @@
+<ul>
+  <% unless @followings.empty? %>
+    <% @followings.each do |following| %>
+      <%= render "pages/user", user: following %>
+    <% end %>
+    <div class="users-load-more">
+      <%= link_to "もっと見る", follow_users_path(type: "following") %>
+    </div>
+  <% else %>
+    <p>
+      <%= t :no_content %>
+    </p>
+  <% end %>
+</ul>

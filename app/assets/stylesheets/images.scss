@@ -134,3 +134,38 @@
     }
   }
 }
+
+
+.image-form {
+  .field {
+    margin-bottom: 10px;
+
+    .image-description {
+      min-height: 150px;
+    }
+  }
+
+  .image-image {
+    margin-bottom: 10px;
+
+    .image-panel {
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      width: 100%;
+      height: 200px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    .image-file-field {
+      display: inherit;
+    }
+  }
+
+  .actions {
+    float: right;
+
+    .image-btn-cancel {
+      margin-right: 10px;
+    }
+  }
+}

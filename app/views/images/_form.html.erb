@@ -1,31 +1,54 @@
-<%= form_for image, multipart: true, authenticity_token: true do |f| %>
-  <% if image.errors.any? %>
-    <%= render "shared/erros_messages", object: image %>
-  <% end %>
+<div class="modal-dialog images-upload-modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">
+        &times;
+      </button>
+      <h4 class="modal-title">写真をアップロード</h4>
+    </div>
+    <div class="modal-body">
+      <div class="image-form">
+        <%= form_for image, multipart: true, authenticity_token: true,
+          remote: true do |f| %>
+          <div class="image-form-errors">
+            <% if image.errors.any? %>
+              <%= render "shared/error_messages", object: image %>
+            <% end %>
+          </div>
 
-  <div class="field">
-    <%= f.label :イメージ %>
-    <%= f.file_field :image %>
-  </div>
+          <div class="image-image">
+            <span>
+              <%= image_tag "", class: "img-responsive image-panel" %>
+            </span>
+            <span><%= f.file_field :image, class: "image-file-field" %></span>
+          </div>
 
-  <div class="field">
-    <%= f.label :カテゴリ %>
-    <%= f.select :category_id, @categories
-      .collect {|category| [category.name, category.id]}, {}, class: "form-control" %>  
-  </div>
+          <div class="field">
+            <%= f.label :カテゴリ %>
+            <%= f.select :category_id, @categories.collect {|category|
+              [category.name, category.id]}, {}, class: "form-control" %>
+          </div>
 
-  <div class="field">
-    <%= f.label :デスクリプション %>
-    <%= f.text_area :description, class: "form-control" %>
-  </div>
+          <div class="field">
+            <%= f.label :アドレス %>
+            <%= f.text_field :address, class: "form-control" %>
+          </div>
 
-  <div class="field">
-    <%= f.label :アドレス %>
-    <%= f.text_field :address, class: "form-control" %>
-  </div>
-  <br>
+          <div class="field">
+            <%= f.label :デスクリプション %>
+            <%= f.text_area :description, class: "form-control image-description" %>
+          </div>
 
-  <div class="actions">
-    <%= f.submit "保存", class: "btn btn-primary" %>
+          <div class="actions">
+            <button type="button" class="btn btn-danger image-btn-cancel"
+              data-dismiss="modal">
+              キャンセル
+            </button>
+            <%= f.submit "保存", class: "btn btn-primary" %>
+          </div>
+          <div class="clearfix"></div>
+        <% end %>
+      </div>
+    </div>
   </div>
-<% end %>
+</div>

@@ -1,6 +1,5 @@
 class ImagesController < ApplicationController
   def index
-  	@image = Image.new
     @images = current_user.images_news_feed
     unless @images.empty?
       image_offset = params[:image_offset] || @images.first.id
@@ -10,16 +9,27 @@ class ImagesController < ApplicationController
     end
   end
 
+  def new
+    @image = Image.new
+    @categories = Category.all
+  end
+
   def create
     @image = Image.new image_params
     @image.user_id = current_user.id
-    
+
     if @image.save
       flash[:success] = "アップロードに成功しました"
+      redirect_to root_path
     else
-      flash[:danger] = "アップロードに失敗しました"
+      respond_to do |format|
+        format.html do
+          flash[:danger] = "アップロードに失敗しました"
+          redirect_to root_path
+        end
+        format.js
+      end
     end
-    redirect_to root_path
   end
 
   private

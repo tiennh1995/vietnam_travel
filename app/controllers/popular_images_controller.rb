@@ -2,6 +2,8 @@ class PopularImagesController < ApplicationController
   before_action :load_data_static
 
   def index
+		@image = Image.new
+		@categories = Category.all
     image_offset = params[:image_offset] || 0
     @images = Image.popular_images.where("id > ?", image_offset)
       .limit Settings.load_more_image_size

@@ -3,15 +3,20 @@ class Image < ApplicationRecord
   belongs_to :category
 
   has_many :comments, dependent: :destroy
+  has_many :feed_backs, dependent: :destroy
 
   validates :user, presence: true
   validates :category, presence: true
 
   mount_uploader :image, ImageUploader
 
-  scope :popular_images, -> {order like_number: :desc, id: :asc}
+  scope :popular_images, -> {order like_number: :desc, id: :desc}
 
   def main_comments
-    comments.where(parent_id: nil).order id: :asc
+    comments.where(parent_id: nil).order id: :desc
+  end
+
+  def likes
+    feed_backs.like
   end
 end

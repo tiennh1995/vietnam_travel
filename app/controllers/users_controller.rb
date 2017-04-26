@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   def show
     @images = @user.images.order id: :desc
     unless @images.empty?
-      image_offset = params[:image_offset] || @images.first.id
+      image_offset = params[:image_offset] || (@images.first.id + 1)
       @images = @images.where("id < ?", image_offset)
         .limit Settings.load_more_image_size
       @last = (@images.size < Settings.load_more_image_size) ? true : false

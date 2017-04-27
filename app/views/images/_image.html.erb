@@ -2,16 +2,19 @@
   <div class="images-header">
     <span class="images-header-content">
       <span class="images-image">
-        <%= link_to "#" do %>
+        <%= link_to current_user do %>
           <%= image_tag avatar_profile(current_user), class: "img-responsive
             images-header-avatar" %>
         <% end %>
       </span>
 
       <div class="images-header-info">
-        <h6><%= link_to current_user.full_name, "#" %></h6>
+        <h6><%= link_to current_user.full_name, current_user %>
+          <span class="image-post-title">
+            写真をアップロードした。
+          </span>
+        </h6>
         <small><%= time_ago_in_words image.created_at %></small>
-
         <span class="dropdown header-item images-header-icon">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <%= image_tag "arrow.png", class: "icon" %>
@@ -73,6 +76,11 @@
       <span><b>アドレス: </b></span>
       <%= link_to image.address, "#"%>
     </div>
+
+    <div class="images-body-category">
+      <span><b>カテゴリ: </b></span>
+      <%= link_to image.category.name, "#"%>
+    </div>
     <div class="images-body-image" data-toggle="modal"
       data-target="#images-modal-<%= image.id %>">
       <%= image_tag image.image.url, class: "img-responsive images-show" %>
@@ -84,17 +92,31 @@
     <span class="images-like">
       <% if current_user.liked image %>
         <%= image_tag "unlike.png", class: "images-like-icon" %>
-        <span class="unlike">ライク</span>
+        <span class="unlike"><%= image.likes.size %> ライク</span>
       <% else %>
         <%= image_tag "like.png", class: "images-like-icon" %>
-        <span class="like">ライク</span>
+        <span class="like"><%= image.likes.size %> ライク</span>
       <% end %>
     </span>
 
     <span class="images-comments">
       <%= image_tag "comment.png", class: "images-comment-icon" %>
+      <span id="comment-size-<%= image.id %>">
+        <%= image.main_comments.size %>
+      </span>
       コメント
     </span>
+    <hr>
+  </div>
+
+  <div class="image-comment-form">
+    <%= form_for [image, Comment.new], remote: true do |f| %>
+      <%= image_tag avatar_profile(current_user),
+        class: "img-responsive img-avatar-comment" %>
+      <%= f.text_field :content, placeholder: "何かを書いて",
+        class: "form-control comment-form-content",
+        id: "image-comment-form-content-#{image.id}" %>
+    <% end %>
     <hr>
   </div>
 
@@ -103,6 +125,7 @@
       .limit Settings.load_more_comment_size %>
     <% image_comments.each do |comment| %>
       <%= render "comments/comment", comment: comment %>
+      <%= render "comments/edit_form", image: image, comment: comment %>
     <% end %>
   </div>
   <div id="load-more-image-comments-<%= image.id %>">

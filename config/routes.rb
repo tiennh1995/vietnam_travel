@@ -4,10 +4,10 @@ Rails.application.routes.draw do
     registrations: "registrations",
   }
   resources :images do
-    resources :comments
+    resources :comments, except: :show
   end
   resources :comments do
-    resources :reply_comments
+    resources :reply_comments, except: :show
   end
   resources :popular_images
   resources :follow_users, only: :index

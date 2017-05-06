@@ -1,4 +1,6 @@
 class ImagesController < ApplicationController
+  before_action :load_data_static, :load_image, only: :show
+
   def index
     @images = current_user.images_news_feed
     unless @images.empty?
@@ -32,8 +34,19 @@ class ImagesController < ApplicationController
     end
   end
 
+  def show
+  end
+
   private
   def image_params
     params.require(:image).permit :description, :image, :address, :category_id
+  end
+
+  def load_image
+    @image = Image.find_by id: params[:id]
+    unless @image
+      flash[:danger] = "写真は存在じゃない。"
+      redirect_to root_path
+    end
   end
 end

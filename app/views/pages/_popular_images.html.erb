@@ -1,9 +1,9 @@
 <ul class="popular-images">
   <% unless @popular_images.empty? %>
-    <li>
-      <% @popular_images.each_with_index do |popular_image, index| %>
+    <% @popular_images.each_with_index do |popular_image, index| %>
+      <li>
         <div class="image-news-feed-populars">
-          <%= link_to "#" do %>
+          <%= link_to popular_image do %>
             <%= image_tag popular_image.image.url, class: "img-responsive
               image-news-feed-right" %>
           <% end %>
@@ -26,12 +26,12 @@
             </span>
           </div>
         </div>
-      <% end %>
-      <div class="images-load-more">
-        <hr>
-        <%= link_to "もっと見る", popular_images_path %>
-      </div>
-    </li>
+      </li>
+    <% end %>
+    <div class="images-load-more">
+      <hr>
+      <%= link_to "もっと見る", popular_images_path %>
+    </div>
   <% else %>
     <p>
       <%= t :no_content %>

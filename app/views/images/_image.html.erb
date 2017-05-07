@@ -88,14 +88,16 @@
     <hr>
   </div>
 
-  <div class="images-footer">
+ <div class="images-footer">
     <span class="images-like">
-      <% if current_user.liked image %>
-        <%= image_tag "unlike.png", class: "images-like-icon" %>
-        <span class="unlike"><%= image.likes.size %> ライク</span>
-      <% else %>
-        <%= image_tag "like.png", class: "images-like-icon" %>
-        <span class="like"><%= image.likes.size %> ライク</span>
+      <%= link_to image_likes_path(image, FeedBack.new), method: :post do %>
+        <% if current_user.liked image %>
+          <%= image_tag "unlike.png", class: "images-like-icon" %>
+          <span class="unlike"><%= image.likes.size %> ライク</span>
+        <% else %>
+          <%= image_tag "like.png", class: "images-like-icon" %>
+          <span class="like"><%= image.likes.size %> ライク</span>
+        <% end %>
       <% end %>
     </span>
 

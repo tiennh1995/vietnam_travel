@@ -28,7 +28,8 @@
                 <span>編集</span>
               </li>
             <% end %>
-            <%= link_to "#" do %>
+            <%= link_to image_path(image), method: :delete,
+              data: {confirm: "本気ですか？"} do %>
               <li>
                 <span>
                   <i class="fa fa-times" aria-hidden="true"></i>
@@ -36,14 +37,11 @@
                 <span>削除</span>
               </li>
             <% end %>
-            <%= link_to "#" do %>
-              <li>
-                <span>
-                  <i class="fa fa-bookmark-o" aria-hidden="true"></i>
-                </span>
-                <span>ブックマック</span>
-              </li>
-            <% end %>
+
+            <span id="image-book-mark-<%= image.id %>">
+              <%= render "book_marks/book_mark_form", image: image %>
+            </span>
+
             <%= link_to "#" do %>
               <li>
                 <span>
@@ -90,11 +88,7 @@
 
   <div class="images-footer">
     <span class="images-like" id="image-like-<%= image.id %>">
-      <% if (like = current_user.liked(image)) %>
-        <%=  render "likes/like", image: image, like: like %>
-      <% else %>
-        <%= render "likes/unlike", image: image %>
-      <% end %>
+      <%= render "likes/like_form", image: image %>
     </span>
 
     <span class="images-comments">

@@ -28,6 +28,18 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, AvatarUploader
 
+  def likes
+    feed_backs.like
+  end
+
+  def book_marks
+    feed_backs.book_mark.order image_id: :desc
+  end
+
+  def book_marked_images
+    Image.where(id: book_marks.pluck(:image_id)).order id: :desc
+  end
+
   def just_followed
     following.order id: :desc
   end
@@ -44,12 +56,12 @@ class User < ApplicationRecord
     Image.where(user_id: user_ids).order id: :desc
   end
 
-  def likes
-    feed_backs.like
-  end
-
   def liked image
     likes.find_by image_id: image.id
+  end
+
+  def book_marked image
+    book_marks.find_by image_id: image.id
   end
 
   def current_user? user

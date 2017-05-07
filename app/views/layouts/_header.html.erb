@@ -2,7 +2,6 @@
   <span class="header-left">
     <li class="header-title">
       <%= link_to root_path do %>
-        <%#= image_tag "logo.png", class: "image-responsive logo-header" %>
         ベトナム観光地
       <% end %>
     </li>
@@ -36,6 +35,9 @@
       <ul class="dropdown-menu">
         <li>
           <%= link_to "マイプロファィル", current_user %>
+        </li>
+        <li>
+          <%= link_to "ブックマックした写真", user_book_marks_path(current_user) %>
         </li>
         <li>
           <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>

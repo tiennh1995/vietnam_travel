@@ -129,6 +129,25 @@
         padding-bottom: 3px;
       }
     }
+
+    .images-share {
+      cursor: pointer;
+
+      a {
+        color: black !important;
+      }
+
+      a:-webkit-any-link {
+        color: -webkit-link;
+        cursor: auto;
+        text-decoration: inherit;
+      }
+
+      .images-share-icon {
+        height: 20px;
+        width: 20px;
+      }
+    }
   }
 
   .images-comments {
@@ -201,5 +220,25 @@
     .image-btn-cancel {
       margin-right: 10px;
     }
+  }
+}
+
+.share-images-modal {
+  .image-image {
+    margin-bottom: 10px;
+  }
+
+  .form-control {
+    margin-bottom: 10px;
+    min-height: 100px;
+  }
+
+  .share-cancel {
+    float: right;
+    margin-right: 5px;
+  }
+
+  .share-submit {
+    float: right;
   }
 }

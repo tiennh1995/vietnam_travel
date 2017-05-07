@@ -40,6 +40,10 @@ class User < ApplicationRecord
     feed_backs.report
   end
 
+  def shared_images
+    Image.where sharer_id: self.id
+  end
+
   def book_marked_images
     Image.where(id: book_marks.pluck(:image_id)).order id: :desc
   end
@@ -57,7 +61,8 @@ class User < ApplicationRecord
   def images_news_feed
     user_ids = following.ids
     user_ids.push self.id
-    Image.where(user_id: user_ids).order id: :desc
+    Image.where(user_id: user_ids).or(Image.where(sharer_id: user_ids))
+      .distinct.order id: :desc
   end
 
   def liked image

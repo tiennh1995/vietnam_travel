@@ -1,12 +1,16 @@
 class LikesController < ApplicationController
-	 before_action :load_image
+  before_action :load_image
+  before_action :load_like, only: :destroy
 
   def create
     @like = @image.feed_backs.new
     @like.user = current_user
     @like.feed_back_type = "like"
     @like.save
-    redirect_to root_path
+  end
+
+  def destroy
+    @like.destroy
   end
 
   private
@@ -18,7 +22,11 @@ class LikesController < ApplicationController
     end
   end
 
-  def new
+  def load_like
+    @like = FeedBack.like.find_by id: params[:id]
+    unless @like
+      flash[:danger] = "存在じゃない。"
+      redirect_to root_path
+    end
   end
-
 end

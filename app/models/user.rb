@@ -36,6 +36,10 @@ class User < ApplicationRecord
     feed_backs.book_mark.order image_id: :desc
   end
 
+  def reports
+    feed_backs.report
+  end
+
   def book_marked_images
     Image.where(id: book_marks.pluck(:image_id)).order id: :desc
   end
@@ -62,6 +66,10 @@ class User < ApplicationRecord
 
   def book_marked image
     book_marks.find_by image_id: image.id
+  end
+
+  def reported image
+    reports.find_by image_id: image.id
   end
 
   def current_user? user

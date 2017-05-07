@@ -1,5 +1,6 @@
 class ImagesController < ApplicationController
-  before_action :load_data_static, :load_image, only: [:show, :destroy]
+  before_action :load_data_static, only: :show
+  before_action :load_image, except: [:index, :new, :create]
 
   def index
     @images = current_user.images_news_feed
@@ -37,8 +38,19 @@ class ImagesController < ApplicationController
   def show
   end
 
+  def edit
+    @categories = Category.all
+  end
+
+  def update
+    if @image.update_attributes image_params
+      flash[:success] = "アップデイト成功した"
+      redirect_to @image
+    end
+  end
+
   def destroy
-    if @image.destroy
+    if current_user == @image.user && @image.destroy
       flash[:success] = "削除成功した。"
     else
       flash[:danger] = "削除失敗した。"

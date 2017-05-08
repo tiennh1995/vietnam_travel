@@ -1,6 +1,6 @@
 class FollowUsersController < ApplicationController
   before_action :load_data_static
-
+  
   def index
     @type = params[:type] || "following"
     @users = current_user.send(@type).order id: :desc

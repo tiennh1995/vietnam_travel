@@ -8,6 +8,12 @@
       margin-bottom: 25px;
       position: relative;
 
+      .follow-users-btn {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+      }
+
       .img-user-cover {
         width: 100%;
         max-height: 300px;

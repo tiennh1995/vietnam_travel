@@ -1,0 +1,39 @@
+.reply-comments {
+  .image-comment-form {
+    display: block;
+
+    .img-avatar-comment {
+      height: 30px !important;
+      width: 30px !important;
+      float: left;
+      display: block;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      margin-right: 10px;
+    }
+
+    .comment-form-content {
+      overflow: hidden;
+      width: 90%;
+      height: 30px !important;
+    }
+  }
+}
+
+.image-comment-edit-form {
+  display: block;
+
+  .img-avatar-comment {
+    height: 30px !important;
+    width: 30px !important;
+    float: left;
+    display: block;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-right: 10px;
+  }
+
+  .comment-form-content {
+    overflow: hidden;
+    width: 90%;
+    height: 30px !important;
+  }
+}

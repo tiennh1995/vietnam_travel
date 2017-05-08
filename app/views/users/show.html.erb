@@ -13,6 +13,12 @@
         <div class="user-full-name">
           <%= @user.full_name %>
         </div>
+
+        <% unless current_user.current_user? @user %>
+          <div class="follow-users-btn">
+            <%= link_to "アンフォロー", "#", class: "btn btn-primary" %>
+          </div>
+        <% end %>
       </div>
 
       <div class="user-info">
@@ -30,7 +36,11 @@
       <% unless @images.empty? %>
         <div id="user-show-images">
           <% @images.each do |image| %>
-            <%= render "images/image", image: image %>
+            <% if image.share_id %>
+              <%= render "shares/share_image", image: image %>
+            <% else %>
+              <%= render "images/image", image: image %>
+            <% end %>
           <% end %>
         </div>
 

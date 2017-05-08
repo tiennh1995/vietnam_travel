@@ -3,13 +3,14 @@ class User < ApplicationRecord
     :recoverable, :rememberable, :trackable, :validatable
 
   has_many :comments, dependent: :destroy
-  has_many :feed_backs, dependent: :destroy
+  has_many :feed_backs, class_name: FeedBack.name, foreign_key: :user_id,
+    dependent: :destroy
   has_many :images, dependent: :destroy
   has_one :profile, dependent: :destroy
   has_many :active_relationships, class_name: Relationship.name,
-    foreign_key: "follower_id", dependent: :destroy
+    foreign_key: :follower_id, dependent: :destroy
   has_many :passive_relationships, class_name: Relationship.name,
-    foreign_key: "followed_id", dependent: :destroy
+    foreign_key: :followed_id, dependent: :destroy
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
@@ -27,6 +28,26 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, AvatarUploader
 
+  def likes
+    feed_backs.like
+  end
+
+  def book_marks
+    feed_backs.book_mark.order image_id: :desc
+  end
+
+  def reports
+    feed_backs.report
+  end
+
+  def shared_images
+    Image.where sharer_id: self.id
+  end
+
+  def book_marked_images
+    Image.where(id: book_marks.pluck(:image_id)).order id: :desc
+  end
+
   def just_followed
     following.order id: :desc
   end
@@ -40,12 +61,20 @@ class User < ApplicationRecord
   def images_news_feed
     user_ids = following.ids
     user_ids.push self.id
-    Image.where(user_id: user_ids).order id: :desc
+    Image.where(user_id: user_ids).or(Image.where(sharer_id: user_ids))
+      .distinct.order id: :desc
   end
 
   def liked image
-    FeedBack.find_by image_id: image.id, user_id: self.id,
-      feed_back_type: "like"
+    likes.find_by image_id: image.id
+  end
+
+  def book_marked image
+    book_marks.find_by image_id: image.id
+  end
+
+  def reported image
+    reports.find_by image_id: image.id
   end
 
   def current_user? user
@@ -70,5 +99,9 @@ class User < ApplicationRecord
     nil
     rescue => e
     return nil
+  end
+
+  def followed? user
+    active_relationships.find_by followed_id: user.id
   end
 end

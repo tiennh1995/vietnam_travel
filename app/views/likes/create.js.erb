@@ -1,0 +1,4 @@
+<% unless @like.errors.any? %>
+  $('#image-like-<%= @image.id %>')
+    .html('<%= j render "like", image: @image, like: @like %>');
+<% end %>

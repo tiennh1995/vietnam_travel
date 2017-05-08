@@ -4,12 +4,18 @@ Rails.application.routes.draw do
     registrations: "registrations",
   }
   resources :images do
-    resources :comments
+    resources :comments, except: :show
+    resources :likes, only: [:create, :destroy]
+    resources :book_marks, only: [:create, :destroy]
+    resources :reports, only: :create
+    resources :shares, except: [:index, :show, :destroy]
   end
-  resources :comments do
-    resources :reply_comments
+  resources :comments, only: :index do
+    resources :reply_comments, except: :show
   end
-  resources :popular_images
+  resources :popular_images, only: :index
   resources :follow_users, only: :index
-  resources :users, only: [:show, :update]
+  resources :users, only: [:show, :update] do
+    resources :book_marks, only: :index
+  end
 end

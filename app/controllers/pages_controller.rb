@@ -8,6 +8,7 @@ class PagesController < ApplicationController
   private
   def load_data
     if user_signed_in?
+      @categories = Category.all
       @images = current_user.images_news_feed.offset(0)
         .limit Settings.load_more_image_size
     end

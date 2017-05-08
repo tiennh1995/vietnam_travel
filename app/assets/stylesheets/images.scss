@@ -45,6 +45,12 @@
           font-weight: bold;
           font-size: 14px;
           color: #365899;
+
+          .image-post-title {
+            color: black;
+            font-size: small;
+            font-weight: 100;
+          }
         }
 
         .images-header-user {
@@ -66,7 +72,7 @@
           }
 
           .dropdown-menu {
-            min-width: 120px;
+            min-width: 145px;
 
             a:hover {
               cursor: auto;
@@ -99,7 +105,7 @@
       }
     }
 
-    .images-body-address {
+    .images-body-category {
       margin-bottom: 10px;
     }
   }
@@ -107,12 +113,13 @@
   .images-footer {
     .images-like {
       cursor: pointer;
+      margin-right: 10px;
 
-      .like {
+      .unlike {
         color: black;
       }
 
-      .unlike {
+      .like {
         color: #3b5998;
       }
 
@@ -123,14 +130,115 @@
       }
     }
 
-    .images-comments {
+    .images-share {
       cursor: pointer;
 
-      .images-comment-icon {
-        height: 30px;
-        width: 30px;
+      a {
+        color: black !important;
       }
 
+      a:-webkit-any-link {
+        color: -webkit-link;
+        cursor: auto;
+        text-decoration: inherit;
+      }
+
+      .images-share-icon {
+        height: 20px;
+        width: 20px;
+      }
     }
+  }
+
+  .images-comments {
+    cursor: pointer;
+    margin-right: 10px;
+
+    .images-comment-icon {
+      height: 30px;
+      width: 30px;
+    }
+
+    .image-comment-edit-form {
+      display: none;
+
+      .comment-edit-btn-cancel {
+        color: #428bca;
+      }
+    }
+  }
+
+  .image-comment-form {
+    display: block;
+
+    .img-avatar-comment {
+      height: 40px !important;
+      width: 40px !important;
+      float: left;
+      display: block;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      margin-right: 10px;
+    }
+
+    .comment-form-content {
+      overflow: hidden;
+      width: 90%;
+      height: 40px !important;
+    }
+  }
+}
+
+
+.image-form {
+  .field {
+    margin-bottom: 10px;
+
+    .image-description {
+      min-height: 150px;
+    }
+  }
+
+  .image-image {
+    margin-bottom: 10px;
+
+    .image-panel {
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      width: 100%;
+      height: 200px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    .image-file-field {
+      display: inherit;
+    }
+  }
+
+  .actions {
+    float: right;
+
+    .image-btn-cancel {
+      margin-right: 10px;
+    }
+  }
+}
+
+.share-images-modal {
+  .image-image {
+    margin-bottom: 10px;
+  }
+
+  .form-control {
+    margin-bottom: 10px;
+    min-height: 100px;
+  }
+
+  .share-cancel {
+    float: right;
+    margin-right: 5px;
+  }
+
+  .share-submit {
+    float: right;
   }
 }

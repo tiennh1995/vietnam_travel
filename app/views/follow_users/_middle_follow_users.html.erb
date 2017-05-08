@@ -8,7 +8,7 @@
 
     <div id="load-more-follow-users">
       <%= link_to "もっと見る", follow_users_path(type: @type,
-        follow_users_offset: users.last.id - 1), remote: true %>
+        follow_users_offset: users.last.id), remote: true %>
     </div>
   <% else %>
     <h3 class="no-content"><%= t :no_content %></h3>

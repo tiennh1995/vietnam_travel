@@ -16,7 +16,7 @@
         <div><b>フォローされる人数: </b><%= user.profile.followed_number %></div>
 
         <div class="follow-users-btn">
-         <%= render "relationships/follow_form", class: "btn btn-primary" %>
+          <%= render "relationships/follow_form", user: user %>
         </div>
       </div>
     </span>

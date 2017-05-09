@@ -41,6 +41,71 @@
       input {
         padding-right: 30px;
       }
+
+      .search-results {
+        position: absolute;
+        top: 33px;
+        left: 0;
+        width: 500px;
+        padding: 7px;
+
+        .results {
+          background-color: white;
+          box-shadow: 1px 2px 4px 1px rgba(0, 0, 0, 0.16) !important;
+          max-height: 70vh;
+          overflow-y: auto;
+          padding-left: 0px;
+
+          p {
+            background-color: #e9ebee;
+            margin-bottom: 0px !important;
+            height: 25px;
+            line-height: 25px;
+
+            b {
+              padding-left: 10px;
+              padding-right: 10px;
+              display: inline-block;
+              vertical-align: middle;
+            }
+          }
+
+          li {
+            height: 45px;
+            line-height: 45px;
+            cursor: pointer;
+
+            p {
+              background-color: white;
+              padding-left: 10px;
+              padding-right: 10px;
+              vertical-align: middle;
+            }
+
+            .images-search-img,
+            .users-search-img {
+              padding-left: 10px;
+
+              img {
+                width: 30px;
+                height: 30px;
+              }
+            }
+
+            .images-search-str,
+            .users-search-str {
+              background-color: white;
+              padding-left: 10px;
+              padding-right: 10px;
+              vertical-align: middle;
+            }
+          }
+
+          hr {
+            margin: 0px !important;
+          }
+        }
+      }
     }
   }
 

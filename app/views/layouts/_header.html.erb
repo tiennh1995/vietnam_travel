@@ -10,10 +10,14 @@
         <span>
           <%= text_field_tag :search, params[:search],
             placeholder: "写真のアドレスを入力してください", class: "form-control
-            images-search" %>
+            images-search", id: "images-search" %>
           <i class="fa fa-search" aria-hidden="true"></i>
         </span>
       <% end %>
+      <span class="search-results">
+        <ul class="results">
+        </ul>
+      </span>
     </li>
     <div class="clearfix"></div>
   </span>

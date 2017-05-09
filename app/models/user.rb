@@ -117,4 +117,11 @@ class User < ApplicationRecord
   def user_relationship user
     active_relationships.find_by followed_id: user.id
   end
+
+  class << self
+    def search data
+      data = data.downcase
+      User.where "lower(full_name) LIKE ?", "%#{data}%"
+    end
+  end
 end

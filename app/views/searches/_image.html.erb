@@ -42,7 +42,8 @@
         category: image.category.id) %>
     </div>
     <div class="images-body-image">
-      <%= link_to image.shared_image do %>
+      <% share_image = image.shared_image || image %>
+      <%= link_to share_image do %>
         <%= image_tag image.image.url, class: "img-responsive images-show" %>
       <% end %>
     </div>

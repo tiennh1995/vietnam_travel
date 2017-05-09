@@ -1,0 +1,87 @@
+<div class="images share-images">
+  <div class="images-header">
+    <span class="images-header-content">
+      <span class="images-image">
+        <%= link_to image.sharer do %>
+          <%= image_tag avatar_profile(image.sharer), class: "img-responsive
+            images-header-avatar" %>
+        <% end %>
+      </span>
+
+      <div class="images-header-info">
+        <h6><%= link_to image.sharer.full_name, image.sharer %>
+          <span class="image-post-title">
+            写真をシェルした。
+          </span>
+        </h6>
+        <small><%= time_ago_in_words image.created_at %></small>
+        <span class="dropdown header-item images-header-icon">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <%= image_tag "arrow.png", class: "icon" %>
+          </a>
+          <ul class="dropdown-menu">
+            <% if current_user == image.sharer %>
+              <%= link_to edit_image_share_path(image.shared_image, image),
+                remote: true do %>
+                <li>
+                  <span>
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                  </span>
+                  <span>編集</span>
+                </li>
+              <% end %>
+
+              <%= link_to image_path(image), method: :delete,
+                data: {confirm: "本気ですか？"} do %>
+                <li>
+                  <span>
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                  </span>
+                  <span>削除</span>
+                </li>
+              <% end %>
+            <% end %>
+
+            <span id="image-book-mark-<%= image.id %>">
+              <%= render "book_marks/book_mark_form", image: image %>
+            </span>
+            <% unless current_user.reported image %>
+              <span id="image-report-<%= image.id %>">
+                <%= link_to image_reports_path(image), remote: true,
+                  method: :post, data: {confirm: "本気ですか？"} do %>
+                  <li>
+                    <span>
+                      <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                    </span>
+                    <span>レポート</span>
+                  </li>
+                <% end %>
+              </span>
+            <% end %>
+          </ul>
+        </span>
+      </div>
+    </span>
+  </div>
+
+  <div class="images-body">
+    <div class="images-body-description">
+      <% if !image.share_description.blank? &&
+        (image.share_description.length > Settings.length_description) %>
+        <span>
+          <%= image.share_description[0...Settings.length_description] %>
+        </span>
+        <span class="complete">
+          <%= image.share_description[
+            Settings.length_description..image.share_description.length] %>
+        </span>
+        <span class="load-more">もっと見る..</span>
+      <% else %>
+        <%= image.share_description %>
+      <% end %>
+    </div>
+
+    <%= render "searches/image", image: image  %>
+    <hr>
+  </div>
+</div>

@@ -6,7 +6,7 @@
       <% end %>
     </li>
     <li class="header-search">
-      <%= form_tag root_path, method: :get do %>
+      <%= form_tag searches_path, method: :get do %>
         <span>
           <%= text_field_tag :search, params[:search],
             placeholder: "写真のアドレスを入力してください", class: "form-control

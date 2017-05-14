@@ -12,26 +12,35 @@ class UsersController < ApplicationController
   end
 
   def update
-    errors = @user.update_profile user_params: user_params,
-      profile_params: profile_params
-    if errors.nil?
-      flash[:success] = "アップデイト成功した"
-      redirect_to user_path(@user)
+    if user_params[:current_password]
+      if @user.update_with_password user_params
+        bypass_sign_in @user
+        flash[:success] = "アップデイト成功した"
+        redirect_to @user
+      end
     else
-      respond_to do |format|
-        format.html do
-          @images = @user.images.order(id: :desc).limit 5
-          flash[:danger] = "アップデイト成功さなかった"
-          render :show
+      errors = @user.update_profile user_params: user_params,
+        profile_params: profile_params
+      if errors.nil?
+        flash[:success] = "アップデイト成功した"
+        redirect_to user_path(@user)
+      else
+        respond_to do |format|
+          format.html do
+            @images = @user.images.order(id: :desc).limit 5
+            flash[:danger] = "アップデイト成功さなかった"
+            render :show
+          end
+          format.js
         end
-        format.js
       end
     end
   end
 
   private
   def user_params
-    params.require(:user).permit :full_name, :sex, :avatar, :cover
+    params.require(:user).permit :full_name, :sex, :avatar, :cover,
+      :current_password, :password, :password_confirmation
   end
 
   def profile_params

@@ -191,4 +191,27 @@
       }
     }
   }
+
+  .password-modal {
+    h4 {
+      text-align: center;
+    }
+
+    .form-control {
+      margin-bottom: 10px;
+    }
+
+    .actions {
+      float: right;
+
+      .btn-password-save {
+        float: right;
+      }
+
+      .btn-password-cancel {
+        float: right;
+        margin-right: 10px;
+      }
+    }
+  }
 }

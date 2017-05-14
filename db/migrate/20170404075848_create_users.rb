@@ -4,6 +4,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string :full_name
       t.integer :sex, default: 0
       t.string :avatar
+      t.string :cover
       t.boolean :admin, default: false
 
       t.timestamps

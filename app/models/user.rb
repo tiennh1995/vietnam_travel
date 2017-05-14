@@ -27,6 +27,7 @@ class User < ApplicationRecord
   enum sex: [:male, :female]
 
   mount_uploader :avatar, AvatarUploader
+  mount_uploader :cover, CoverUploader
 
   def likes
     feed_backs.like
@@ -87,7 +88,7 @@ class User < ApplicationRecord
     ActiveRecord::Base.transaction do
       self.update_attributes user_params
       profile = self.profile
-      profile.update_attributes profile_params
+      profile.update_attributes(profile_params) if profile_params
     end
     messages = profile.errors.messages
     messages.keys.each do |key|

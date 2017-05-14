@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20170404141800) do
     t.string   "full_name"
     t.integer  "sex",                    default: 0
     t.string   "avatar"
+    t.string   "cover"
     t.boolean  "admin",                  default: false
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false

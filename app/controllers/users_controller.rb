@@ -31,11 +31,12 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit :full_name, :sex, :avatar
+    params.require(:user).permit :full_name, :sex, :avatar, :cover
   end
 
   def profile_params
-    params.require(:profile).permit :phone_number, :birthday, :place_birth
+    params.require(:profile).permit(:phone_number, :birthday,
+      :place_birth) if params[:profile]
   end
 
   def load_user

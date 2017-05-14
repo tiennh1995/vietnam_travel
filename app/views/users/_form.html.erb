@@ -4,12 +4,6 @@
       <%= render "shared/error_messages", object: @user %>
     </div>
 
-    <div class="user-avatar">
-      <span><%= image_tag avatar_profile(@user), class: "img-responsive
-        img-user-avatar-file-field" %></span>
-      <span><%= f.file_field :avatar, class: "avatar-file-field" %></span>
-    </div>
-
     <%= f.label "メイル" %>
     <label class="field form-control" readonly>
       <%= @user.email %>

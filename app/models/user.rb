@@ -102,6 +102,23 @@ class User < ApplicationRecord
     return nil
   end
 
+  def update_password user_params
+    if self.reset_password_token &&
+      self.reset_password_token == user_params[:reset_password_token] &&
+      user_params[:password] && user_params[:password_confirmation] &&
+      user_params[:password] == user_params[:password_confirmation]
+      ActiveRecord::Base.transaction do
+        user_params[:reset_password_token] = nil
+        self.update_attributes user_params
+      end
+    else
+      return false
+    end
+    return true
+    rescue => e
+    return false
+  end
+
   def followed? user
     following.include? user
   end

@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
   root "pages#show"
   devise_for :users, controllers: {
-    registrations: "registrations",
+    registrations: "registrations"
   }
+  patch "password", to: "passwords#update"
+  get "edit_password", to: "passwords#edit"
+  get "new_password", to: "passwords#new"
+  resources :passwords
   resources :images do
     resources :comments, except: :show
     resources :likes, only: [:create, :destroy]

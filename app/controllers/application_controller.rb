@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   layout :layout_by_resource
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
+  before_filter :mailer_set_url_options
 
   def load_data_static
     if user_signed_in?
@@ -15,6 +16,10 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+  def mailer_set_url_options
+    ActionMailer::Base.default_url_options = {host: request.host_with_port}
+  end
+
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up) {|u| u.permit :email,
       :full_name, :password, :password_confirmation, :sex, :avatar, :cover}

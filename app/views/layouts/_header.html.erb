@@ -6,7 +6,7 @@
       <% end %>
     </li>
     <li class="header-search">
-      <%= form_tag searches_path, method: :get do %>
+      <%= form_tag searches_path, method: :get, id: "form-search" do %>
         <span>
           <%= text_field_tag :search, params[:search],
             placeholder: "写真のアドレスを入力してください", class: "form-control
@@ -38,7 +38,7 @@
       </a>
       <ul class="dropdown-menu">
         <li>
-          <%= link_to "マイプロファィル", current_user %>
+          <%= link_to "マイプロフィール", current_user %>
         </li>
         <li>
           <%= link_to "ブックマックした写真", user_book_marks_path(current_user) %>

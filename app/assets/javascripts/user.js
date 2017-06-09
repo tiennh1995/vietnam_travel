@@ -16,23 +16,6 @@ document.addEventListener('turbolinks:load', function() {
       reader.readAsDataURL(input.files[0]);
     }
   }
-
-  $(document).on('click', '.user-edit-btn', function() {
-    $('.user-infomation').hide();
-    $('.user-form-edit').show();
-    $('html, body').animate({
-      scrollTop: $('.user-info').position().top
-    }, 500);
-  });
-
-  $(document).on('click', '.user-form-btn-cancel', function(e) {
-    e.preventDefault();
-    $('html, body').animate({
-      scrollTop: 0
-    }, 500);
-    $('.user-form-edit').hide();
-    $('.user-infomation').show();
-  });
 });
 
 $(document).on({
@@ -58,7 +41,3 @@ $(document).on({
     $('.user-cover-update-text').hide();
   }
 }, '.user-image .user-cover');
-
-$(document).on('click', '.user-avatar-update-text', function() {
-
-});

@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   end
   resources :popular_images, only: :index
   resources :follow_users, only: :index
-  resources :users, only: [:show, :update] do
+  resources :users, only: [:show, :edit, :update] do
     resources :book_marks, only: :index
     resources :relationships, only: [:create, :destroy]
   end

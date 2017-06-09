@@ -214,4 +214,31 @@
       }
     }
   }
+
+  .user-info-modal {
+    h4 {
+      text-align: center;
+    }
+
+    .form-control {
+      margin-bottom: 10px;
+    }
+
+    label {
+      margin-right: 10px;
+    }
+
+    .user-form-submit {
+      float: right;
+
+      .user-form-btn-save {
+        float: right;
+      }
+
+      .user-form-btn-cancel {
+        float: right;
+        margin-right: 10px;
+      }
+    }
+  }
 }

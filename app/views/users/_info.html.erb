@@ -19,14 +19,15 @@
     <%= @user.profile.birthday %>
   </div>
   <% if current_user.current_user? @user %>
-    <button class="btn btn-primary user-edit-btn">
-      編集
-    </button>
+    <%= link_to edit_user_path(@user, type: "info"), remote: true,
+      class: "btn btn-primary user-edit-btn" do %>
+      ユーザー情報を編集
+    <% end %>
 
-    <button class="btn btn-info user-edit-password" data-toggle="modal"
-      data-target="#password-modal-form">
+    <%= link_to edit_user_path(@user, type: "password"), remote: true,
+      class: "btn btn-info user-edit-password" do %>
       パスワードを編集
-    </button>
+    <% end %>
   <% end %>
   <div class="clearfix"></div>
 </div>
